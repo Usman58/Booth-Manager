@@ -1,0 +1,69 @@
+{% extends 'Home/base.html'%}
+{% load static %}
+
+{% block content %}
+   
+    <nav class="navbar navbar-white bg-white">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'images/6 12.png' %}" alt="" width="194" height="106" class="d-inline-block align-text-top">
+        </a>
+        <h4 class="roboto text-end text-dark">Hong Kong International Airport<br> Temporary Specimen Collection Centre</h4>
+      </div>
+    </nav>
+    <div class="container mt-3">
+      <div class="row pb-4">
+        {% for booth in booths %}
+          <div class="mt-4 col-sm col1" style="
+            {% if booth.status == 'Available' %}
+              background-color: #198754;
+            { elif booth.status == 'Occupied' %}
+              background-color: #ffc107;
+            {% else %}
+              background-color: #dc3545;
+            {% endif %}
+          " id="{{booth.id}}">
+            {{booth.title}}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-md-3 mt-3">
+          Legend:
+        </div>
+        <div class="col-md-3 mb-2">
+          <button type="button" class="btn btn-success btn-lg">Available</button>
+        </div>
+        <div class="col-md-3 mb-2">
+          <button type="button" class="btn btn-warning btn-lg">Occupied</button>
+        </div>
+        <div class="col-md-3 mb-2">
+          <button type="button" class="btn btn-danger btn-lg">Closed</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      {% for booth in booths %}
+        var socket = new WebSocket('ws://localhost:8000/ws/test/' + {{booth.id}})
+        socket.onmessage = async function(event){
+          // console.log(event);
+          var data=JSON.parse(event.data);
+          console.log(data.payload);
+          if (data.payload.status == 'Available'){
+            $('#'+data.payload.id).css('background-color', '#198754')
+          }else if(data.payload.status == 'Occupied'){
+            $('#'+data.payload.id).css('background-color', '#ffc107')
+          }else{
+            $('#'+data.payload.id).css('background-color', '#dc3545')
+          }
+        }
+      {% endfor %}
+    </script>
+   
+    {% endblock content %}
+      
+  
+    
+
+   

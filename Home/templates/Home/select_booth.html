@@ -1,0 +1,30 @@
+{% extends 'Home/base.html'%}
+{% load static %}
+{% block content %}
+<div class="text-center mt-5">
+    <img src="{% static 'images/6 12.png' %}" alt="" width="194" height="106">
+</div>
+<div class="text-center mt-5">
+    <h4>HKIA - TSCC</h4>
+</div>
+<form action="{% url 'booth_detail' %}" method="post" novalidate>
+    {% csrf_token %}
+    <div class="row mt-5">
+
+        <div class="col-md-4 offset-md-4 text-center">
+            <label for="inputPassword5" class="form-label fl">Select Booth:</label>
+            <select class="form-select" name="booth" aria-label="Default select example">
+                <!-- <option selected disabled>Select Booth</option> -->
+                {% for booth in booths %}
+                <option value="{{booth.id}}">{{booth.title}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center pc">
+            <button class="btn btn-dark btn-lg">Continue</button>
+        </div>
+    </div>
+</form>
+{% endblock content %}

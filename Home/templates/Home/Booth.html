@@ -1,0 +1,57 @@
+{% extends 'Home/base.html'%}
+{% load static %}
+{% block content %}
+<div class="text-center mt-5">
+    <img src="{% static 'images/6 12.png' %}" alt="" width="194" height="106">
+</div>
+<div class="text-center mt-5">
+    <a class="text-dark" href="">
+        <h4>{{booths.title}}</h4>
+    </a>
+</div>
+
+<div class="row mt-5">
+
+    <div class="col-sm-6 offset-sm-3 text-center">
+        <div class="row">
+            <div class="col-6 pt-3">
+                <h4>Current Status:</h4>
+            </div>
+            <div class="col-6"><button type="button" id="current" class="btn bt1
+                {% if booths.status == 'Available' %}
+                    btn-success
+                {% elif booths.status == 'Occupied' %}
+                    btn-warning
+                {% else %}
+                    btn-danger
+                {% endif %}
+                btn-lg">{{booths.status}}</button></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row pt-5">
+
+    <div class="col-sm-6 offset-sm-3 text-center">
+        <button type="button" data-href='{{booths.id}}' class="btn bt2 btn-success btn-lg" id="status-1">Available</button>
+    </div>
+</div>
+<div class="row p-5">
+
+    <div class="col-sm-6 offset-sm-3 text-center">
+        <button type="button" data-href='{{booths.id}}' class="btn btn-warning bt2 btn-lg" id="status-2">Occupied</button>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-sm-6 offset-sm-3 text-center">
+        <button type="button"  data-href='{{booths.id}}' class="btn btn-danger bt2 btn-lg" id="status-3">Closed</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-md-3 text-center p-5">
+        <a href="{% url 'both_list' %}" type="button" class="btn btn-dark btn-lg">Switch Booth</a>
+    </div>
+</div>
+{% endblock content %}

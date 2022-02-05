@@ -1,0 +1,51 @@
+
+    .col1 {
+        text-align: center;
+        height: 132px;
+        color: white;
+        border: 1px solid black;
+        padding-top: 45px;
+        
+      }
+      .btn{
+        width: 170px;
+        border-radius: 35px;
+        margin-bottom: 4px;
+    
+      }
+      
+      
+      .roboto{
+        font-family: 'Roboto';
+      }
+      
+      
+     
+    .s-r{
+      padding-top: 70px;
+      padding-bottom: 50px;
+    }
+    .fl{
+        padding-right: 320px;
+        padding-top: 40px;
+    }
+    .pc{
+        padding-top: 102px;
+    }
+    .bt1{
+        height: 70px;
+    }
+    .bt2{
+        height: 70px;
+        width: 250px;
+    }
+    .row{
+        margin: 0 !important;
+        --bs-gutter-x: 0 !important;
+    }
+    @media (min-width: 576px){
+      .col-sm {
+        flex: 0 0 auto;
+        width: 12.5%;
+      }
+    }
